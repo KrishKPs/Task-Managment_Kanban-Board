@@ -17,7 +17,7 @@ const authenticate = (req, res, next) => {
 
         next();  // Continue to the next middleware or route handler
     } catch (error) {
-        return res.status(401).json({ msg: "Invalid token" });
+        return res.status(401).json({ msg: "Invalid token" , error: error.message});      
     }   
 }
 
