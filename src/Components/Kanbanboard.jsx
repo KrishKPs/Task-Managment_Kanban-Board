@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card.tsx";
+import { ScrollArea } from "@/components/ui/scroll-area.tsx";
 import { Calendar, MoreHorizontal } from "lucide-react";
 import React from "react";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
