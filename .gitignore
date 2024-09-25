@@ -38,10 +38,10 @@ next-env.d.ts
 
 package.json     
 package-lock.json 
-next.config.js 
+
 .env.local    
 tsconfig.json
 components.json
-.next
-       
+
+
 
