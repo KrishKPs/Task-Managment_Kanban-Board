@@ -16,6 +16,7 @@ const authenticate = (req, res, next) => {
         console.log("User decoded from token:", req.user);  // Log the decoded token
 
         next();  // Continue to the next middleware or route handler
+        
     } catch (error) {
         return res.status(401).json({ msg: "Invalid token" , error: error.message});      
     }   

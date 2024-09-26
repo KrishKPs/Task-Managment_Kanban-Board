@@ -8,6 +8,12 @@ const signup = async (req, res) => {
     // Run the CORS middleware
     await runMiddleware(req, res, cors);
 
+    if (req.method === 'OPTIONS') {
+       
+        
+        return res.status(204).end();
+      }
+
 
     await dbconnect();
 
@@ -24,7 +30,7 @@ const signup = async (req, res) => {
         const token = jwt.sign({ username: newUser.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         res.status(201).json({ msg: "User created", token });
-        
+
     } catch (error) {
         res.status(500).json({ msg: "Server error", error });
     }

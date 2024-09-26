@@ -3,7 +3,7 @@ import Cors from 'cors';
 // Initialize the CORS middleware
 const cors = Cors({
   origin: '*',  // Allow all origins for testing; replace with your domain in production
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Allow all necessary HTTP methods
+  methods: ['GET', 'POST', 'PUT', 'DELETE' , 'OPTIONS'],  // Allow all necessary HTTP methods
   credentials: true,  // Allow credentials
   allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Origin', 'X-Requested-With'],  // Allow headers
 });
