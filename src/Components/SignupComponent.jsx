@@ -14,6 +14,7 @@ import { Label } from "@/Components/ui/label";
 import axios from "axios";
 import { AlertCircle } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function SignupComponent() {
   const [username, setUsername] = useState("");
@@ -129,9 +130,9 @@ export default function SignupComponent() {
         <CardFooter className="flex justify-center">
           <p className="text-sm text-[#a3a3a3]">
             Already have an account?{" "}
-            <a href="/loginpage" className="text-[#5c7cfa] hover:underline">
+            <Link to="/loginpage" className="text-[#5c7cfa] hover:underline">
               Sign in
-            </a>
+            </Link>
           </p>
         </CardFooter>
       </Card>
