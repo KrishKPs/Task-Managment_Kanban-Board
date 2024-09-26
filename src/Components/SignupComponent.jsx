@@ -30,7 +30,7 @@ export default function SignupComponent() {
 
     try {
       const response = await axios.post(
-        "https://task-managment-kanban-mmhesu1y6-krish-patels-projects-3e6b9326.vercel.app//api/auth/signup",
+        "https://task-managment-kanban-mmhesu1y6-krish-patels-projects-3e6b9326.vercel.app/api/auth/signup",
         {
           username,
           email,
