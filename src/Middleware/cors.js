@@ -1,12 +1,11 @@
-// src/middleware/cors.js
 import Cors from 'cors';
 
-// CORS middleware to allow requests from specific domains
+// Initialize the CORS middleware
 const cors = Cors({
-  origin: '*',  // Add other origins as needed
-  methods: ['GET', 'POST', 'PUT', 'DELETE' , 'OPTIONS'],
-  credentials : true,     // Allow 'Access-Control-Allow-Credentials'  
-  allowedHeaders : ['Content-Type', 'Authorization', 'Accept', 'Origin', 'X-Requested-With']
+  origin: '*',  // Allow all origins for testing; replace with your domain in production
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Allow all necessary HTTP methods
+  credentials: true,  // Allow credentials
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Origin', 'X-Requested-With'],  // Allow headers
 });
 
 // Helper function to run the middleware
