@@ -12,6 +12,7 @@ import { Input } from "@/Components/ui/input";
 import { Label } from "@/Components/ui/label";
 import axios from "axios";
 import { AlertCircle } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -107,7 +108,7 @@ export default function LoginComponent() {
         <CardFooter className="flex justify-center">
           <p className="text-sm text-[#a3a3a3]">
             Dont have an account?{" "}
-            <Link to="/signuppage" className="text-[#5c7cfa] hover:underline">
+            <Link href="/signuppage" className="text-[#5c7cfa] hover:underline">
               Sign up
             </Link>
           </p>
