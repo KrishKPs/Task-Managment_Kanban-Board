@@ -7,20 +7,16 @@ const TaskCRUD = async (req, res) => {
     // Run the CORS middleware
     await runMiddleware(req, res, cors);
 
-    // Handle preflight `OPTIONS` request
     if (req.method === 'OPTIONS') {
-        res.status(200).end();  // Respond with 200 for preflight requests
-        return;
-      }
-      
+        return res.status(204).end();  // Respond with 204 No Content for preflight requests
+    }
 
-    // Connect to the database
     await dbconnect();
 
-    // Authenticate user and proceed
+    // Run the authenticate middleware first, then proceed
     authenticate(req, res, async () => {
         const { method } = req;
-        const username = req.user.username;  // Get authenticated user's username
+        const username = req.user.username;
 
         switch (method) {
             case 'GET':
@@ -41,7 +37,7 @@ const TaskCRUD = async (req, res) => {
                         status: taskData.status,
                         priority: taskData.priority,
                         dueDate: taskData.dueDate,
-                        username: username,  // Assign task to authenticated user
+                        username: username,
                     });
                     res.status(201).json({ msg: "Task created", newTask });
                 } catch (error) {

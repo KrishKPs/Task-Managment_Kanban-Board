@@ -32,14 +32,14 @@ export default function TaskModal({ task, onClose, onSave }) {
     try {
       if (task) {
         await axios.put(
-          `https://task-managment-kanban-r43gz0lmr-krish-patels-projects-3e6b9326.vercel.app/api/taskupdate/${task._id}`,
+          `https://task-managment-kanban-board-95ckcpflt.vercel.app/api/taskupdate/${task._id}`,
           taskData,
           {
             headers: { Authorization: `${localStorage.getItem("token")}` },
           }
         );
       } else {
-        await axios.post("https://task-managment-kanban-r43gz0lmr-krish-patels-projects-3e6b9326.vercel.app/api/taskscrud", taskData, {
+        await axios.post("https://task-managment-kanban-board-95ckcpflt.vercel.app/api/taskscrud", taskData, {
           headers: { Authorization: `${localStorage.getItem("token")}` },
         });
       }

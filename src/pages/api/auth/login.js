@@ -8,12 +8,10 @@ const login = async (req, res) => {
     // Run the CORS middleware
     await runMiddleware(req, res, cors);
 
-    // Handle preflight `OPTIONS` request
     if (req.method === 'OPTIONS') {
-        res.status(200).end();  // Respond with 200 for preflight requests
-        return;
-      }
-      
+        return res.status(204).end();  // Respond with 204 No Content for preflight requests
+    }
+
     if (req.method !== 'POST') {
         return res.status(405).json({ msg: "Only POST requests are allowed" });
     }
@@ -24,15 +22,18 @@ const login = async (req, res) => {
 
     try {
         const user = await User.findOne({ username });
+
         if (!user) return res.status(404).json({ msg: "User not found" });
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
+
         if (!isPasswordValid) return res.status(401).json({ msg: "Invalid credentials" });
 
         const token = jwt.sign({ username: user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
         res.status(200).json({ msg: "User logged in", token });
     } catch (error) {
-        res.status(500).json({ msg: "Error logging in", error });
+        res.status(500).json({ msg: "Server error", error });
     }
 };
 

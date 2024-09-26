@@ -18,7 +18,7 @@ export default function Render() {
   const fetchTasks = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get("https://task-managment-kanban-r43gz0lmr-krish-patels-projects-3e6b9326.vercel.app/api/taskscrud", {
+      const response = await axios.get("https://task-managment-kanban-board-95ckcpflt.vercel.app/api/taskscrud", {
         headers: {
           Authorization: `${localStorage.getItem("token")}`,
         },
@@ -40,7 +40,7 @@ export default function Render() {
       );
 
       await axios.put(
-        `https://task-managment-kanban-r43gz0lmr-krish-patels-projects-3e6b9326.vercel.app/api/taskupdate/${id}`,
+        `https://task-managment-kanban-board-95ckcpflt.vercel.app/api/taskupdate/${id}`,
         { status: newStatus },
         {
           headers: {

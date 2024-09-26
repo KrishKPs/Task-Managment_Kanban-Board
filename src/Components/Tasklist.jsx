@@ -25,7 +25,7 @@ export default function TaskList({ tasks, setTasks }) {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://task-managment-kanban-r43gz0lmr-krish-patels-projects-3e6b9326.vercel.app/api/taskupdate/${id}`, {
+      await axios.delete(`https://task-managment-kanban-board-95ckcpflt.vercel.app/api/taskupdate/${id}`, {
         headers: {
           Authorization: `${localStorage.getItem("token")}`,
         },

@@ -7,20 +7,16 @@ const taskupdate = async (req, res) => {
     // Run the CORS middleware
     await runMiddleware(req, res, cors);
 
-    // Handle preflight `OPTIONS` request
     if (req.method === 'OPTIONS') {
-        res.status(200).end();  // Respond with 200 for preflight requests
-        return;
-      }
-      
+        return res.status(204).end();  // Respond with 204 No Content for preflight requests
+    }
 
-    // Connect to the database
     await dbconnect();
 
-    // Authenticate user and proceed
+    // Run authenticate middleware and proceed if valid
     authenticate(req, res, async () => {
         const { method } = req;
-        const { id } = req.query;  // Get task ID from query
+        const { id } = req.query;  // Use req.query to get the dynamic route ID
 
         switch (method) {
             case 'PUT':

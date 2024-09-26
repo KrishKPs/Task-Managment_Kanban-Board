@@ -26,7 +26,7 @@ export default function LoginComponent() {
 
     try {
       const response = await axios.post(
-        "https://task-managment-kanban-r43gz0lmr-krish-patels-projects-3e6b9326.vercel.app/api/auth/login",
+        "https://task-managment-kanban-board-95ckcpflt.vercel.app/api/auth/login",
         {
           username,
           password,
