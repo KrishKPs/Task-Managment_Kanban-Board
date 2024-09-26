@@ -1,21 +1,21 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@/Components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogFooter,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+} from "@/Components/ui/dialog";
+import { Input } from "@/Components/ui/input";
+import { Label } from "@/Components/ui/label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
+} from "@/Components/ui/select";
+import { Textarea } from "@/Components/ui/textarea";
 import axios from "axios";
 import { useState } from "react";
 
@@ -32,14 +32,14 @@ export default function TaskModal({ task, onClose, onSave }) {
     try {
       if (task) {
         await axios.put(
-          `http://localhost:3000/api/taskupdate/${task._id}`,
+          `https://task-managment-kanban-r43gz0lmr-krish-patels-projects-3e6b9326.vercel.app/api/taskupdate/${task._id}`,
           taskData,
           {
             headers: { Authorization: `${localStorage.getItem("token")}` },
           }
         );
       } else {
-        await axios.post("http://localhost:3000/api/taskscrud", taskData, {
+        await axios.post("https://task-managment-kanban-r43gz0lmr-krish-patels-projects-3e6b9326.vercel.app/api/taskscrud", taskData, {
           headers: { Authorization: `${localStorage.getItem("token")}` },
         });
       }

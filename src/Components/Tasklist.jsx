@@ -1,13 +1,13 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { Button } from "@/Components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/Components/ui/card";
+import { ScrollArea } from "@/Components/ui/scroll-area";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@/Components/ui/select";
 import axios from "axios";
 import { Trash2 } from "lucide-react";
 import { useState } from "react";
@@ -25,7 +25,7 @@ export default function TaskList({ tasks, setTasks }) {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/taskupdate/${id}`, {
+      await axios.delete(`https://task-managment-kanban-r43gz0lmr-krish-patels-projects-3e6b9326.vercel.app/api/taskupdate/${id}`, {
         headers: {
           Authorization: `${localStorage.getItem("token")}`,
         },

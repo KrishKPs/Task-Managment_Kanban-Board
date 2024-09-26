@@ -1,9 +1,9 @@
 import KanbanBoard from "../Components/Kanbanboard";
 import TaskList from "../Components/Tasklist";
 import TaskModal from "../Components/Taskmodal";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/Components/ui/button";
+import { Card, CardContent } from "@/Components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/Components/ui/tabs";
 import axios from "axios";
 import { PlusIcon, ListIcon } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -18,7 +18,7 @@ export default function Render() {
   const fetchTasks = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get("http://localhost:3000/api/taskscrud", {
+      const response = await axios.get("https://task-managment-kanban-r43gz0lmr-krish-patels-projects-3e6b9326.vercel.app/api/taskscrud", {
         headers: {
           Authorization: `${localStorage.getItem("token")}`,
         },
@@ -40,7 +40,7 @@ export default function Render() {
       );
 
       await axios.put(
-        `http://localhost:3000/api/taskupdate/${id}`,
+        `https://task-managment-kanban-r43gz0lmr-krish-patels-projects-3e6b9326.vercel.app/api/taskupdate/${id}`,
         { status: newStatus },
         {
           headers: {

@@ -1,5 +1,5 @@
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription } from "@/Components/ui/alert";
+import { Button } from "@/Components/ui/button";
 import {
   Card,
   CardContent,
@@ -7,9 +7,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+} from "@/Components/ui/card";
+import { Input } from "@/Components/ui/input";
+import { Label } from "@/Components/ui/label";
 import axios from "axios";
 import { AlertCircle } from "lucide-react";
 import { useRouter } from "next/router";
@@ -26,7 +26,7 @@ export default function LoginComponent() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/auth/login",
+        "https://task-managment-kanban-r43gz0lmr-krish-patels-projects-3e6b9326.vercel.app/api/auth/login",
         {
           username,
           password,

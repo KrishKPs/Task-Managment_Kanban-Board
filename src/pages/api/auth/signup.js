@@ -1,41 +1,44 @@
 import dbconnect from "../../../Lib/mongo";
-import User from "../../../Model/User";  // Correct path for User model
- // Use bcryptjs for better compatibility in Node.js
-import bcrypt from "bcryptjs";   
-import jwt from "jsonwebtoken";  
+import User from "../../../Model/User";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import cors, { runMiddleware } from "../../../Middleware/cors";
 
 const signup = async (req, res) => {
-    if (req.method === 'POST') {
-        try {
-            await dbconnect(); 
+    // Run the CORS middleware
+    await runMiddleware(req, res, cors);
 
-            const { username, email, password } = req.body;
+    // Handle preflight `OPTIONS` request
+    if (req.method === 'OPTIONS') {
+        res.status(200).end();  // Respond with 200 for preflight requests
+        return;
+      }
+      
+    if (req.method !== 'POST') {
+        return res.status(405).json({ msg: "Only POST requests are allowed" });
+    }
 
-            // Check if user already exists
-            const existingUser = await User.findOne({ email });
-            if (existingUser) {
-                return res.status(400).json({ msg: "User already exists" });
-            }
+    await dbconnect();
 
-            // Hash the password
-            const hashed = await bcrypt.hash(password, 10);
+    const { username, email, password } = req.body;
 
-            // Create new user
-            const user = new User({ username, email, password: hashed });
-            await user.save();
+    try {
+        // Check if the user already exists
+        const existingUser = await User.findOne({ email });
+        if (existingUser) return res.status(400).json({ msg: "User already exists" });
 
-            // Generate JWT token
-            const token = jwt.sign({ username: user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-            res.status(200).json({
-                msg: "User created",
-                token: token
-            });
-        } catch (error) {
-            res.status(500).json({ msg: "Server error", error });
-        }
-    } else {
-        res.status(405).json({ msg: "Only POST requests are allowed" });
+        // Create a new user
+        const newUser = await User.create({ username, email, password: hashedPassword });
+
+        // Generate JWT token
+        const token = jwt.sign({ username: newUser.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        res.status(201).json({ msg: "User created", token });
+    } catch (error) {
+        res.status(500).json({ msg: "Server error", error });
     }
 };
 
